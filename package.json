@@ -1,5 +1,5 @@
 {
-  "name": "bluecase",
+  "name": "aglio-theme-bluecase",
   "version": "1.0.0",
   "description": "Generate Scala case classes from Api-Blueprint specifications",
   "main": "index.js",

@@ -9,7 +9,7 @@ exports.getConfig = function () {
     // them in the options object later!
     options: [
       {
-        name: 'Bluecase',
+        name: 'name',
         description: 'Generate Scala case classes from API Blueprint specs',
         default: 'World'
       }

@@ -1,12 +1,16 @@
 # api-blueprint-to-scala
-Generate Scala case classes from api-blueprint specifications
+Generate Scala case classes from api-blueprint specifications using Algio
+
+This module is an Aglio theme
+
+See [Aglio Blueprint Renderer](]https://github.com/danielgtaylor/aglio)
 
 ### caveat 
 *works for my initial case of an apib file with just datastructures*
 
 ## INSTALL
-
-* `npm install -g .`
+1. `npm install -g aglio`
+2. `npm install -g .`
 
 ## USE
 

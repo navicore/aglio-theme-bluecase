@@ -1,7 +1,8 @@
-# *UNDER CONSTRUCTION ... does not work yet *
-
 # api-blueprint-to-scala
 Generate Scala case classes from api-blueprint specifications
+
+### caveat 
+**works for my initial case of an apib file with just datastructures**
 
 ## INSTALL
 
@@ -9,5 +10,7 @@ Generate Scala case classes from api-blueprint specifications
 
 ## USE
 
-* `npm -i my.apib -t bluecase -o -`
+* `aglio -i tmp/mystructs.apib -t bluecase -o -`
+* `aglio -i tmp/mystructs.apib -t bluecase -o -  --theme-superclass MyCases   > tmp/MyCases.scala`
+* `aglio -i tmp/mystructs.apib -t bluecase -o -  --theme-superclass MyCases --theme-doubles lat,lon   > tmp/MyCases.scala`
 

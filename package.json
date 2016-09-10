@@ -2,7 +2,7 @@
   "name": "aglio-theme-bluecase",
   "version": "1.0.0",
   "description": "Generate Scala case classes from Api-Blueprint specifications",
-  "main": "index.js",
+  "main": "src/render.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,5 +22,7 @@
   "bugs": {
     "url": "https://github.com/navicore/bluecase/issues"
   },
-  "homepage": "https://github.com/navicore/bluecase#readme"
+  "homepage": "https://github.com/navicore/bluecase#readme",
+  "dependencies": {
+  }
 }

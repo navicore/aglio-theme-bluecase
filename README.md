@@ -3,7 +3,7 @@ Generate Scala case classes from api-blueprint specifications using Algio
 
 This module is an Aglio theme
 
-See [Aglio Blueprint Renderer](]https://github.com/danielgtaylor/aglio)
+See [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio)
 
 ### caveat 
 *works for my initial case of an apib file with just datastructures*

@@ -22,6 +22,7 @@ exports.render = function (input, options, done) {
   // Normally you would use some template engine here.
   // To keep this code really simple, we just print
   // out a string and ignore the API Blueprint.
+  console.log("ejs:\n" + JSON.stringify(input))
   done(null, 'Hiya, ' + options.themeName + '!');
 };
 

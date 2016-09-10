@@ -1,10 +1,21 @@
+//turn number into scala Double if element name matches cmdline arg list
+function numberType(mname, tpe, options) {
+  const doubles = options.themeDoubles.split(',')
+  if (doubles && doubles.includes(mname)) {
+    return 'Double'
+  } else {
+    return tpe
+  }
+}
+
 function lookupType(member, options) {
   const tpe = member.content.value.element
+  const mname = member.content.key.content
   switch(tpe) {
     case 'string':
       return 'String'
     case 'number':
-      return 'Integer'
+      return numberType(mname, tpe, options)
     case 'boolean':
       return 'Boolean'
     default:

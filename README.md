@@ -2,7 +2,7 @@
 Generate Scala case classes from api-blueprint specifications
 
 ### caveat 
-**works for my initial case of an apib file with just datastructures**
+*works for my initial case of an apib file with just datastructures*
 
 ## INSTALL
 

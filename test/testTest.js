@@ -5,7 +5,7 @@ describe('test1', () => {
   describe('#val', () => {
     let one;
     beforeEach(() => {
-      one = {val: 2, note: 'hi'}
+      one = {val: 2, note: 'hiya'}
     });
     it('should have 2', () => {
       one.val.should.equal(2)

@@ -24,7 +24,7 @@ function lookupType(member, options) {
 }
 
 function classname(item) {
-  return item.content[0].meta.id
+  return item.content[0].meta.id.replace(' ', '')
 }
 
 function arraycode(name, item) {

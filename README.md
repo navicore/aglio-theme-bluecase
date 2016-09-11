@@ -4,11 +4,13 @@ An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to g
 
 ### *caveat*
 *Works for my initial specific apib files - I haven't debugged using other apib files, yet.*
-*I have not studied the parsed form from aglio to know what profound misunderstandings I'm hold - I have some assumptions that some content arrays have just one entry, etc...*
+*I have not studied the parsed form from aglio to know what profound misunderstandings I'm holding - I have some assumptions that some content arrays have just one entry, etc...*
 
 ## INSTALL
-1. `npm install -g aglio`
-2. `npm install -g .`
+1. `git clone https://github.com/navicore/aglio-theme-bluecase.git`
+2. `cd aglio-theme-bluecase`
+3. `npm install -g .`
+4. `npm install -g aglio`
 
 ## USE
 

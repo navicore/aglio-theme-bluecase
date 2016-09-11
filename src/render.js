@@ -20,8 +20,8 @@ function* classes(input, options) {
   if (!input.content[0].content) throw new Error("bad input")
   for (const item of input.content[0].content) {
     if (item.element !== 'dataStructure') throw new Error("not a datastructure: " + JSON.stringify(item))
-    const name = classname(item)
     if (item.content[0].element === 'object') {
+      const name = classname(item)
       yield [name, classcode(name, item, options)]
     }
   }
@@ -32,8 +32,8 @@ function* arrays(input, options) {
   if (!input.content[0].content) throw new Error("bad input")
   for (const item of input.content[0].content) {
     if (item.element !== 'dataStructure') throw new Error("not a datastructure: " + JSON.stringify(item))
-    const name = classname(item)
     if (item.content[0].element === 'array') {
+      const name = classname(item)
       const tpe = item.content[0].content[0].element
       yield [name, `List[${tpe}]`]
     }

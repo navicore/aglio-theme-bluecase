@@ -8,8 +8,7 @@ function fixArrayReferences(result, input, options) {
     var re = new RegExp(tname,"g");
     result = result.replace(re, aname)
   }
-  var re1 = new RegExp(options.themeTrimname,"g");
-  return result.replace(re1, '')  // remove type suffixes from apip files
+  return result
 }
 
 //
@@ -65,13 +64,23 @@ exports.getConfig = function () {
 }
 
 exports.render = function (input, options, done) {
-  const result = []
+  
+  // prepend with abstract class
+  const result = [`abstract class ${options.themeSuperclass}\n`]
+
+  // generate case class text
   const code = classes(input, options)
   for (const [name, scala] of code) {
     result.push(`\n${scala}\n`)
   }
-  result.unshift(`abstract class ${options.themeSuperclass}\n`) //prepend with abstract class
-  let resultStr = result.join("")
-  done(null, fixArrayReferences(resultStr, input, options))
+
+  // turn refs to array in apib into List[MyType]
+  let resultStr = fixArrayReferences(result.join(''), input, options)
+  
+  // remove type suffixes from apip files
+  var re1 = new RegExp(options.themeTrimname,"g");
+  resultStr = resultStr.replace(re1, '') 
+  
+  done(null, resultStr)
 };
 

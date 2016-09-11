@@ -19,3 +19,9 @@ An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to g
 * `aglio -i tmp/mystructs.apib -t bluecase -o -  --theme-superclass MyCases --theme-doubles lat,lon   > tmp/MyCases.scala`
 * `aglio -i tmp/mystructs.apib -t bluecase -o tmp/MyGreatCases  --theme-superclass MyGreatCases --theme-doubles lat,lon`
 
+License
+=======
+Copyright (c) 2016 Ed Sweeney
+
+http://dgt.mit-license.org/
+

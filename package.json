@@ -4,7 +4,7 @@
   "description": "Generate Scala case classes from Api-Blueprint specifications",
   "main": "src/render.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha"
+    "test": "node_modules/.bin/eslint src/*.js && node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.5.0",
     "mocha": "^3.0.2"
   }
 }

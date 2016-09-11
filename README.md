@@ -12,6 +12,8 @@ An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to g
 3. `npm install -g .`
 4. `npm install -g aglio`
 
+![example image](screen.png)
+
 ## USE
 
 * `aglio -i tmp/mystructs.apib -t bluecase -o -`

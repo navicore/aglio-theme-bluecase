@@ -19,7 +19,7 @@ function lookupType(member, options) {
   case 'boolean':
     return 'Boolean'
   default:
-    return tpe
+    return tpe.replace(' ', '')
   }
 }
 
@@ -37,7 +37,7 @@ function casecode(name, item, options) {
   const members = []
   scala.push(`case class ${name}(`)
   for (const member of item.content[0].content) {
-    members.push(`${member.content.key.content}:${lookupType(member, options)}`)
+    members.push(`${member.content.key.content.replace(' ', '')}:${lookupType(member, options)}`)
   }
   scala.push(members.join(', '))
   scala.push(`) extends ${options.themeSuperClass}`)

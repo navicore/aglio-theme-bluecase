@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/navicore/aglio-theme-bluecase.svg?branch=unittests)](https://travis-ci.org/navicore/aglio-theme-bluecase)
-# api-blueprint-to-scala
+# aglio-theme-bluecase
 An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to generate Scala case classes from `object` `datastructure` entries found in [api-blueprint](https://apiblueprint.org) specifications.
 
 ### *caveat*

@@ -40,7 +40,7 @@ function casecode(name, item, options) {
     members.push(`${member.content.key.content}:${lookupType(member, options)}`)
   }
   scala.push(members.join(', '))
-  scala.push(`) extends ${options.themeSuperclass}`)
+  scala.push(`) extends ${options.themeSuperClass}`)
   return scala.join('')
 }
 

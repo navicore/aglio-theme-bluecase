@@ -18,7 +18,7 @@
     "api"
   ],
   "author": "Ed Sweeney",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/navicore/bluecase/issues"
   },

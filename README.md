@@ -8,7 +8,7 @@ An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to g
 
 ## INSTALL
 1. `npm install -g aglio`
-2. `npm install -g .`
+2. `npm install -g .` after cloning and cd'ing into this repo's root dir
 
 ## USE
 

@@ -1,6 +1,6 @@
 {
   "name": "aglio-theme-bluecase",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate Scala case classes from Api-Blueprint specifications",
   "main": "src/render.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/navicore/bluecase.git"
+    "url": "git+https://github.com/navicore/aglio-theme-bluecase.git"
   },
   "keywords": [
     "scala",
@@ -20,9 +20,9 @@
   "author": "Ed Sweeney",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/navicore/bluecase/issues"
+    "url": "https://github.com/navicore/aglio-theme-bluecase/issues"
   },
-  "homepage": "https://github.com/navicore/bluecase#readme",
+  "homepage": "https://github.com/navicore/aglio-theme-bluecase#readme",
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",

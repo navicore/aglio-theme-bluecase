@@ -4,7 +4,7 @@ An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to g
 
 ### *caveat*
 *Works for my initial specific apib files - I haven't debugged using other apib files, yet.*
-*I have not studied the parsed form from aglio to know what profound misunderstandings I'm hold - I have some assumptions that some content arrays have just one entry, etc...*
+*I have not studied the parsed form from aglio to know what profound misunderstandings I'm holding - I have some assumptions that some content arrays have just one entry, etc...*
 
 ## INSTALL
 1. `npm install -g aglio`

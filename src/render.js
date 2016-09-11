@@ -52,7 +52,7 @@ exports.getConfig = function () {
       { //lookup as themeSuperclass
         name: 'superclass',
         description: 'case classes extend this abstract class',
-        default: 'MyCase'
+        default: 'ApibCase'
       },
       { //lookup as themeDoubles
         name: 'doubles',
@@ -66,7 +66,7 @@ exports.getConfig = function () {
 exports.render = function (input, options, done) {
   
   // prepend with abstract class
-  const result = [`abstract class ${options.themeSuperclass}\n`]
+  const result = [`sealed abstract class ${options.themeSuperclass}\n`]
 
   // generate case class text
   const code = classes(input, options)

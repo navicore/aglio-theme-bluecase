@@ -12,14 +12,14 @@ function lookupType(member, options) {
   const tpe = member.content.value.element
   const mname = member.content.key.content
   switch(tpe) {
-    case 'string':
-      return 'String'
-    case 'number':
-      return numberType(mname, tpe, options)
-    case 'boolean':
-      return 'Boolean'
-    default:
-      return tpe
+  case 'string':
+    return 'String'
+  case 'number':
+    return numberType(mname, tpe, options)
+  case 'boolean':
+    return 'Boolean'
+  default:
+    return tpe
   }
 }
 
@@ -27,7 +27,7 @@ function classname(item) {
   return item.content[0].meta.id
 }
 
-function arraycode(name, item, options) {
+function arraycode(name, item) {
   const tpe = item.content[0].content[0].element
   return `// List[${tpe}]`
 }
@@ -46,10 +46,10 @@ function casecode(name, item, options) {
 
 function classcode(name, item, options) {
   switch (item.content[0].element) {
-    case 'array':
-      return arraycode(name, item, options)
-    default:
-      return casecode(name, item, options)
+  case 'array':
+    return arraycode(name, item)
+  default:
+    return casecode(name, item, options)
   }
 }
 

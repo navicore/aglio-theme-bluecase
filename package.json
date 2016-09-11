@@ -4,7 +4,7 @@
   "description": "Generate Scala case classes from Api-Blueprint specifications",
   "main": "src/render.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,9 @@
     "url": "https://github.com/navicore/bluecase/issues"
   },
   "homepage": "https://github.com/navicore/bluecase#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
   }
 }

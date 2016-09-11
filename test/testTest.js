@@ -1,0 +1,20 @@
+let chai = require('chai');
+chai.should(); //tell chai to support 'should'
+
+describe('test1', () => {
+  describe('#val', () => {
+    let one;
+    beforeEach(() => {
+      one = {val: 2, note: 'hi'}
+    });
+    it('should have 2', () => {
+      one.val.should.equal(2)
+    });
+    it('should say hi', () => {
+      one.note.should.equal('hi')
+    });
+  });
+});
+
+
+

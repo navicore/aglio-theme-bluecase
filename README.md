@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/navicore/aglio-theme-bluecase.svg?branch=unittests)](https://travis-ci.org/navicore/aglio-theme-bluecase)
 # api-blueprint-to-scala
 Generate Scala case classes from api-blueprint specifications using Algio
 

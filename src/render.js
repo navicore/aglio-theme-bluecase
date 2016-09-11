@@ -1,6 +1,17 @@
 const classcode = require('./makecases').classcode
 const classname = require('./makecases').classname
 
+// turn all types that are 'array' in apib into scala List[MyType]
+function fixArrayReferences(result, input, options) {
+  const arraymap = arrays(input, options)
+  for (const [tname, aname] of arraymap) {
+    var re = new RegExp(tname,"g");
+    result = result.replace(re, aname)
+  }
+  var re1 = new RegExp(options.themeTrimname,"g");
+  return result.replace(re1, '')  // remove type suffixes from apip files
+}
+
 //
 // generator functions to create scala code
 //
@@ -11,7 +22,9 @@ function* classes(input, options) {
   for (const item of input.content[0].content) {
     if (item.element !== 'dataStructure') throw new Error("not a datastructure: " + JSON.stringify(item))
     const name = classname(item)
-    yield [name, classcode(name, item, options)]
+    if (item.content[0].element === 'object') {
+      yield [name, classcode(name, item, options)]
+    }
   }
 }
 
@@ -55,19 +68,10 @@ exports.render = function (input, options, done) {
   const result = []
   const code = classes(input, options)
   for (const [name, scala] of code) {
-    result.push('\n')
-    result.push(`${scala}\n`)
+    result.push(`\n${scala}\n`)
   }
-  result.unshift(`abstract class ${options.themeSuperclass}\n`)
-  let fixedArrays = result.join("")
-  const arraymap = arrays(input, options)
-  for (const [tname, aname] of arraymap) {
-    var re = new RegExp(tname,"g");
-    fixedArrays = fixedArrays.replace(re, aname)
-  }
-  var re1 = new RegExp(options.themeTrimname,"g");
-  fixedArrays = fixedArrays.replace(re1, '')  // remove type suffixes from apip files
-
-  done(null, fixedArrays)
+  result.unshift(`abstract class ${options.themeSuperclass}\n`) //prepend with abstract class
+  let resultStr = result.join("")
+  done(null, fixArrayReferences(resultStr, input, options))
 };
 

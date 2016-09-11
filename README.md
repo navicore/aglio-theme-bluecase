@@ -12,14 +12,14 @@ An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to g
 3. `npm install -g .`
 4. `npm install -g aglio`
 
-![example image](screen.png)
-
 ## USE
 
 * `aglio -i tmp/mystructs.apib -t bluecase -o -`
 * `aglio -i tmp/mystructs.apib -t bluecase -o -  --theme-superclass MyCases   > tmp/MyCases.scala`
 * `aglio -i tmp/mystructs.apib -t bluecase -o -  --theme-superclass MyCases --theme-doubles lat,lon   > tmp/MyCases.scala`
 * `aglio -i tmp/mystructs.apib -t bluecase -o tmp/MyGreatCases  --theme-superclass MyGreatCases --theme-doubles lat,lon`
+
+![example image](screen.png)
 
 License
 =======

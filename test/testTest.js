@@ -10,8 +10,8 @@ describe('test1', () => {
     it('should have 2', () => {
       one.val.should.equal(2)
     });
-    it('should say hi', () => {
-      one.note.should.equal('hi')
+    it('should say hiya', () => {
+      one.note.should.equal('hiya')
     });
   });
 });

@@ -11,6 +11,10 @@ import spray.json._
 sealed abstract class CouponStuff
 
 case class CouponBase(percent_off:Int, redeem_by:Int) extends CouponStuff
+
+// json support
+
 object CouponBaseJsonProtocol extends DefaultJsonProtocol {
   implicit val couponBaseFormat = jsonFormat2(CouponBase)
-}
+} // CouponBase
+

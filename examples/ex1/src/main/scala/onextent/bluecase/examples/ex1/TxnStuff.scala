@@ -11,12 +11,18 @@ import spray.json._
 sealed abstract class TxnStuff
 
 case class Couponed(percent_off:Int, redeem_by:Int) extends TxnStuff
-object CouponedJsonProtocol extends DefaultJsonProtocol {
-  implicit val couponedFormat = jsonFormat2(Couponed)
-}
 
 case class Txn(coupon:Couponed, amt:Int) extends TxnStuff
+
+// json support
+
+object CouponedJsonProtocol extends DefaultJsonProtocol {
+  implicit val couponedFormat = jsonFormat2(Couponed)
+} // Couponed
+
+
 object TxnJsonProtocol extends DefaultJsonProtocol {
   implicit val couponedFormat = jsonFormat2(Couponed)
   implicit val txnFormat = jsonFormat2(Txn)
-}
+} // Txn
+

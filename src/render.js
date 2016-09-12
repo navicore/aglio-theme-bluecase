@@ -1,5 +1,7 @@
 const classcode = require('./makecases').classcode
 const classname = require('./makecases').classname
+const impcode   = require('./makejson').impcode
+const jsoncode   = require('./makejson').jsoncode
 
 // turn all types that are 'array' in apib into scala List[MyType]
 function fixArrayReferences(result, input, options) {
@@ -34,6 +36,66 @@ function* classes(input, options) {
       }
     }
   }
+}
+
+function* implicitGen(input) {
+  for (const content of input.content) {
+    if (!content.content) throw new Error('bad input')
+    if (content.element === 'category') {
+      for (const item of content.content) {
+        if (
+          item.element === 'dataStructure' &&
+          item.content &&
+          item.content.length &&
+          item.content[0].element === 'object' &&
+          item.content[0].content
+        ) {
+          const name = classname(item)
+          yield [name, impcode(name, item)]
+        }
+      }
+    }
+  }
+}
+
+function implicits(input) {
+
+  const result = {}
+  const code = implicitGen(input)
+  for (const [name, scala] of code) {
+    result[name] = scala
+  }
+  return result
+}
+
+function* jsonCodeGen(input, impMap) {
+  for (const content of input.content) {
+    if (!content.content) throw new Error('bad input')
+    if (content.element === 'category') {
+      for (const item of content.content) {
+        if (
+          item.element === 'dataStructure' &&
+          item.content &&
+          item.content.length &&
+          item.content[0].element === 'object' &&
+          item.content[0].content
+        ) {
+          const name = classname(item)
+          yield [jsoncode(name, item, impMap)]
+        }
+      }
+    }
+  }
+}
+
+function jsonCode(input, options, impMap) {
+
+  const result = ['// json support']
+  const code = jsonCodeGen(input, impMap)
+  for (const [scala] of code) {
+    result.push(`\n${scala}\n`)
+  }
+  return result.join('')
 }
 
 // old-name/new-name map for renames for all the array objects to be List[MyType]
@@ -123,6 +185,13 @@ exports.render = function (input, options, done) {
   const code = classes(input, options)
   for (const [scala] of code) {
     result.push(`\n${scala}\n`)
+  }
+
+  // generate implicit DefaultJsonProtocol code
+  if (options.themeScalaPackage) {
+    const impMap = implicits(input)
+    const jcode = jsonCode(input, options, impMap)
+    result.push(`\n${jcode}\n`)
   }
 
   // turn refs to array in apib into List[MyType]

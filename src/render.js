@@ -66,6 +66,11 @@ exports.getConfig = function () {
         description: 'remove this string from all type names, ie: MyObjectSchema becoms MyObject',
         default: 'Schema'
       },
+      { //lookup as themeScalaPackage
+        name: 'scala-package',
+        description: 'scala package',
+        default: ''
+      },
       { //lookup as themeCollectionType
         name: 'collection-type',
         description: 'scala type for collectoins. ie: List, Set, Array',
@@ -75,6 +80,11 @@ exports.getConfig = function () {
         name: 'super-class',
         description: 'case classes extend this abstract class',
         default: 'ApibCase'
+      },
+      { //lookup as themeSprayJson
+        name: 'spray-json',
+        description: 'add spray.io implicit json support',
+        default: ''
       },
       { //lookup as themeDoubles
         name: 'doubles',
@@ -98,6 +108,16 @@ exports.render = function (input, options, done) {
     `\n`,
     `sealed abstract class ${options.themeSuperClass}\n`
   ]
+
+  // if spray.io json, add import
+  if (options.themeSprayJson) {
+    result.unshift(`import spray.json._\n\n`)
+  }
+
+  // set package statement
+  if (options.themeScalaPackage) {
+    result.unshift(`package ${options.themeScalaPackage}\n\n`)
+  }
 
   // generate case class text
   const code = classes(input, options)

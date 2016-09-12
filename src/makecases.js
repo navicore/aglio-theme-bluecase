@@ -4,7 +4,7 @@ function numberType(mname, tpe, options) {
   if (doubles && doubles.includes(mname)) {
     return 'Double'
   } else {
-    return 'Integer'
+    return 'Int'
   }
 }
 

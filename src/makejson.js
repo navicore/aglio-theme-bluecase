@@ -23,7 +23,7 @@ function jsoncode(name, item, impMap) {
   return scala.join('')
 }
 
-function arrayimpcode(name, item) {
+function arrayimpcode(name, item, impMap) {
   console.log('ejs arrayimpcode:\n' + JSON.stringify(item, 0, 2))
   /*
   const members = []
@@ -34,7 +34,8 @@ function arrayimpcode(name, item) {
   return(`  implicit val ${fname} = jsonFormat${members.length}(${name})\n`)
   */
 
-  return ('  // i need a ref to List[something\n')
+  //return ('  // i need a ref to List[something\n')
+  return impMap[item.content[0].content[0].element]
 }
 
 module.exports.arrayimpcode = arrayimpcode

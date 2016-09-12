@@ -30,7 +30,7 @@ object CouponerJsonProtocol extends DefaultJsonProtocol {
 
 object TxnerJsonProtocol extends DefaultJsonProtocol {
   implicit val couponerFormat = jsonFormat2(Couponer)
-  // i need a ref to List[something
+  implicit val ruleFormat = jsonFormat1(Rule)
   implicit val txnerFormat = jsonFormat3(Txner)
 } // Txner
 

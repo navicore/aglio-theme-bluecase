@@ -41,6 +41,12 @@ function casecode(name, item, options) {
   }
   scala.push(members.join(', '))
   scala.push(`) extends ${options.themeSuperClass}`)
+  if (options.themeSprayJson) {
+    const fname = name.charAt(0).toLowerCase() + name.slice(1) + 'Format'
+    scala.push(`\nobject ${name}JsonProtocol extends DefaultJsonProtocol {\n`)
+    scala.push(`  implicit val ${fname} = jsonFormat${members.length}(${name})\n`)
+    scala.push('}')
+  }
   return scala.join('')
 }
 

@@ -80,6 +80,12 @@ function* implicitArrayGen(input, impMap) {
 }
 
 function implicits(input) {
+
+  /* TODO: use dependency tree maker lib
+   * ejs todo: need to rework this to walk dependency tree and include code
+   * from all dependents!!!
+   */
+
   const result = {}
   const code = implicitGen(input)
   for (const [name, scala] of code) {

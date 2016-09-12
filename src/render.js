@@ -1,7 +1,8 @@
-const classcode = require('./makecases').classcode
-const classname = require('./makecases').classname
-const impcode   = require('./makejson').impcode
-const jsoncode   = require('./makejson').jsoncode
+const classcode    = require('./makecases').classcode
+const classname    = require('./makecases').classname
+const impcode      = require('./makejson').impcode
+const arrayimpcode = require('./makejson').arrayimpcode
+const jsoncode     = require('./makejson').jsoncode
 
 // turn all types that are 'array' in apib into scala List[MyType]
 function fixArrayReferences(result, input, options) {
@@ -47,11 +48,31 @@ function* implicitGen(input) {
           item.element === 'dataStructure' &&
           item.content &&
           item.content.length &&
-          item.content[0].element === 'object' &&
-          item.content[0].content
-        ) {
-          const name = classname(item)
-          yield [name, impcode(name, item)]
+          item.content[0].content) {
+          if (item.content[0].element === 'object') {
+            const name = classname(item)
+            yield [name, impcode(name, item)]
+          }
+        }
+      }
+    }
+  }
+}
+
+function* implicitArrayGen(input, impMap) {
+  for (const content of input.content) {
+    if (!content.content) throw new Error('bad input')
+    if (content.element === 'category') {
+      for (const item of content.content) {
+        if (
+          item.element === 'dataStructure' &&
+          item.content &&
+          item.content.length &&
+          item.content[0].content) {
+          if (item.content[0].element === 'array') {
+            const name = classname(item)
+            yield [name, arrayimpcode(name, item, impMap)]
+          }
         }
       }
     }
@@ -59,10 +80,13 @@ function* implicitGen(input) {
 }
 
 function implicits(input) {
-
   const result = {}
   const code = implicitGen(input)
   for (const [name, scala] of code) {
+    result[name] = scala
+  }
+  const acode = implicitArrayGen(input, result)
+  for (const [name, scala] of acode) {
     result[name] = scala
   }
   return result

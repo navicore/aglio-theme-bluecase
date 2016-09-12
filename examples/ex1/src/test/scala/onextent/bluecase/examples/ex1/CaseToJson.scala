@@ -10,10 +10,10 @@ class CaseToJson extends FlatSpec {
     new {
       val coupon = CouponBase(6, 30)
       val txn = Txn(Couponed(3, 30), 100)
+      val txner = Txner(Couponer(3, 30), 100, List(Couponer(2, 30)))
     }
 
   it should "turn object into json" in {
-
     import CouponBaseJsonProtocol._
     println(fixture.coupon.toJson)
     import TxnJsonProtocol._
@@ -21,5 +21,10 @@ class CaseToJson extends FlatSpec {
     assert(fixture.txn.toJson.toString().contains("coupon\":{\"perc"))
   }
 
+  it should "turn complex object with List into json" in {
+    import TxnerJsonProtocol._
+    println(fixture.txner.toJson)
+    assert(fixture.txner.toJson.toString().contains("coupon\":{\"perc"))
+  }
 }
 

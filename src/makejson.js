@@ -24,17 +24,6 @@ function jsoncode(name, item, impMap) {
 }
 
 function arrayimpcode(name, item, impMap) {
-  console.log('ejs arrayimpcode:\n' + JSON.stringify(item, 0, 2))
-  /*
-  const members = []
-  for (const member of item.content[0].content) {
-    members.push(`${member.content.key.content.replace(' ', '')}`)
-  }
-  const fname = name.charAt(0).toLowerCase() + name.slice(1) + 'Format'
-  return(`  implicit val ${fname} = jsonFormat${members.length}(${name})\n`)
-  */
-
-  //return ('  // i need a ref to List[something\n')
   return impMap[item.content[0].content[0].element]
 }
 

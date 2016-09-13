@@ -5,7 +5,7 @@ An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to g
 Optionally generate spray.io json `DefaultJsonProtocol` support for case classes with `--theme-spray-json true`
 
 ## STATUS
-*Works for my initial specific apib file.  That apib file is moderately complex with several dozen object and array types with some types composed by referencing other types defined in the same apib file.  I have not tested bluecase on any apib files in the wild, yet, except for those in the api-blueprint examples dir.*
+*Works for my initial specific apib file.  That apib file is moderately complex with several dozen object and array types with some types composed by referencing other types defined in the same apib file.  I have not tested bluecase on any apib files in the wild, yet, except for api-blueprint [examples](https://github.com/apiaryio/api-blueprint/blob/master/examples/10.%20Data%20Structures.md).*
 
 ## INSTALL
 

@@ -17,9 +17,8 @@ via [npmjs.org](https://www.npmjs.com/package/aglio-theme-bluecase):
 ## USE
 
 * `aglio -i tmp/mystructs.apib -t bluecase -o -`
-* `aglio -i tmp/mystructs.apib -t bluecase -o -  --theme-superclass MyCases   > tmp/MyCases.scala`
-* `aglio -i tmp/myapi.md -t bluecase -o -  --theme-superclass MyCases --theme-doubles lat,lon   > tmp/MyCases.scala`
 * `aglio -i tmp/myapi.md -t bluecase -o tmp/MyGreatCases  --theme-superclass MyGreatCases --theme-doubles lat,lon`
+* `aglio -i ../../test/example3.md -t bluecase -o src/main/scala/onextent/bluecase/examples/ex1/TxnerStuff.scala --theme-super-class TxnerStuff --theme-scala-package onextent.bluecase.examples.ex1 --theme-spray-json true`
 
 ![example image](screen.png)
 

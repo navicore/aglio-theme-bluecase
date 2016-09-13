@@ -19,6 +19,10 @@ via [npmjs.org](https://www.npmjs.com/package/aglio-theme-bluecase):
 * `aglio -i tmp/myapi.md -t bluecase -o -  --theme-superclass MyCases --theme-doubles lat,lon   > tmp/MyCases.scala`
 * `aglio -i tmp/myapi.md -t bluecase -o tmp/MyGreatCases  --theme-superclass MyGreatCases --theme-doubles lat,lon`
 
+## TODO
+
+* get travis to run the `aglio` commands in build.sh
+
 ![example image](screen.png)
 
 License

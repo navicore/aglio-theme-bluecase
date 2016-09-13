@@ -27,7 +27,7 @@ function jsoncode(name, item, graph) {
   for (const dep of graph.dependenciesOf(name)) {
     const code = graph.getNodeData(dep)
     if (!scala.includes(code)) {
-      scala.push(code)
+      //scala.push(code)
     }
   }
   scala.push(graph.getNodeData(name))

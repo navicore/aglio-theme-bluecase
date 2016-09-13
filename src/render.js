@@ -88,11 +88,8 @@ function implicits(input) {
   const code = implicitGen(input)
   for (const [name, scala, deps] of code) {
     result.push({ name, scala, deps })
-  }
-  // add nodes with data being scala def
-  for (const o of result) {
-    if (!graph.hasNode(o.name)) {
-      graph.addNode(o.name, o.scala)
+    if (!graph.hasNode(name)) {
+      graph.addNode(name, scala)
     }
   }
   const acode = implicitArrayGen(input)
@@ -100,9 +97,7 @@ function implicits(input) {
     if (!graph.hasNode(name)) {
       graph.addNode(name, graph.getNodeData(dep))
     }
-    if (!(dep in graph.dependenciesOf(name))) {
-      graph.addDependency(name, dep)
-    }
+    graph.addDependency(name, dep)
   }
   // add deps
   for (const o of result) {

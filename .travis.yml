@@ -4,5 +4,6 @@ node_js:
 scala:
    - 2.10.4
 before_install:
+  sudo apt-get install build-essential
   npm install -g aglio
 

@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/navicore/aglio-theme-bluecase#readme",
   "dependencies": {
-    "dependency-graph": "^0.5.0"
+    "dependency-graph": "^0.5.0",
+    "root-require": "^0.3.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

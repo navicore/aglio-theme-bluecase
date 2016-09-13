@@ -2,7 +2,7 @@ const classcode    = require('./makecases').classcode
 const classname    = require('./makecases').classname
 const impcode      = require('./makejson').impcode
 const arrayimpcode = require('./makejson').arrayimpcode
-const jsoncode     = require('./makejson').jsoncode
+const spraycode     = require('./makejson').spraycode
 const memberTypes  = require('./makejson').memberTypes
 const DepGraph     = require('dependency-graph').DepGraph
 
@@ -123,7 +123,7 @@ function* jsonCodeGen(input, graph) {
           item.content[0].content
         ) {
           const name = classname(item)
-          yield [jsoncode(name, item, graph)]
+          yield [spraycode(name, item, graph)]
         }
       }
     }

@@ -20,7 +20,7 @@ function impcode(name, item) {
   return(`  implicit val ${fname} = jsonFormat${mems.length}(${name})\n`)
 }
 
-function jsoncode(name, item, graph) {
+function spraycode(name, item, graph) {
   const scala = []
   scala.push(`\nobject ${name}JsonProtocol extends DefaultJsonProtocol {\n`)
   for (const dep of graph.dependenciesOf(name)) {
@@ -40,7 +40,7 @@ function arrayimpcode(name, item) {
 
 module.exports.arrayimpcode = arrayimpcode
 module.exports.impcode      = impcode
-module.exports.jsoncode     = jsoncode
+module.exports.spraycode    = spraycode
 module.exports.members      = members
 module.exports.memberTypes  = memberTypes
 

@@ -2,10 +2,10 @@
 # aglio-theme-bluecase
 An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to generate Scala case classes from `object` `datastructure` entries found in [api-blueprint](https://apiblueprint.org) specifications.
 
-Optionally generate spray.io json `DefaultJsonProtocol` support with the case classes with `--theme-spray-json true`
+Optionally generate spray.io json `DefaultJsonProtocol` support for case classes with `--theme-spray-json true`
 
 ### *caveat*
-*Works for my initial specific apib files.  That app is moderately complex with several dozen types and some types referencing each other.  I haven't debugged using any other apib files except for the API Blueprint repo's [Data Structure](https://github.com/apiaryio/api-blueprint/blob/master/examples/10.%20Data%20Structures.md) example.  I have not studied the [protagonist](https://github.com/apiaryio/protagonist) parsed form from aglio to know what profound misunderstandings I'm holding - I have some assumptions that some content arrays have just one entry, etc...*
+*Works for my initial specific apib file.  That apib file is moderately complex with several dozen types and some types composed by referencing other types defined in the same apib file.  I have not tested bluecase on any apib files in the wild, yet, except for those in the api-blueprint examples dir.*
 
 ## INSTALL
 

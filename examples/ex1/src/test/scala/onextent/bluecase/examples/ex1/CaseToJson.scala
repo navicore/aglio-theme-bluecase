@@ -10,7 +10,7 @@ class CaseToJson extends FlatSpec {
     new {
       val coupon = CouponBase(6, 30)
       val txn = Txn(Couponed(3, 30), 100)
-      val txner = Txner(Couponer(3, 30), 100, List(Rule(2)))
+      val txner = Txner(Couponer(3, 30), 100, List(RuleHolder(Rule(2))))
     }
 
   it should "turn object into json" in {

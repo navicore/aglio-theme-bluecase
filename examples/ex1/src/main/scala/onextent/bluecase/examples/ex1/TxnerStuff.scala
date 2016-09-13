@@ -12,15 +12,23 @@ sealed abstract class TxnerStuff
 
 case class Rule(code:Int) extends TxnerStuff
 
+case class RuleHolder(code:Rule) extends TxnerStuff
+
 case class Couponer(percent_off:Int, redeem_by:Int) extends TxnerStuff
 
-case class Txner(coupon:Couponer, amt:Int, program:List[Rule]) extends TxnerStuff
+case class Txner(coupon:Couponer, amt:Int, program:List[RuleHolder]) extends TxnerStuff
 
 // json support
 
 object RuleJsonProtocol extends DefaultJsonProtocol {
   implicit val ruleFormat = jsonFormat1(Rule)
 } // Rule
+
+
+object RuleHolderJsonProtocol extends DefaultJsonProtocol {
+  implicit val ruleFormat = jsonFormat1(Rule)
+  implicit val ruleHolderFormat = jsonFormat1(RuleHolder)
+} // RuleHolder
 
 
 object CouponerJsonProtocol extends DefaultJsonProtocol {
@@ -31,6 +39,7 @@ object CouponerJsonProtocol extends DefaultJsonProtocol {
 object TxnerJsonProtocol extends DefaultJsonProtocol {
   implicit val couponerFormat = jsonFormat2(Couponer)
   implicit val ruleFormat = jsonFormat1(Rule)
+  implicit val ruleHolderFormat = jsonFormat1(RuleHolder)
   implicit val txnerFormat = jsonFormat3(Txner)
 } // Txner
 

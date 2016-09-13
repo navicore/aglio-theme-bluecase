@@ -69,6 +69,9 @@ Creates a new Coupon.
 ## Rule (object)
 + code: 11 (number)
 
+## RuleHolder (object)
++ code (Rule)
+
 ## Couponer (object)
 + percent_off: 25 (number)
 
@@ -78,7 +81,7 @@ Creates a new Coupon.
 + redeem_by (number) - Date after which the coupon can no longer be redeemed
 
 ## DiscountSchema (array)
-+ (Rule)
++ (RuleHolder)
 
 ## Txner (object)
 + coupon (Couponer)

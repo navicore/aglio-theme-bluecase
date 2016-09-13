@@ -1,7 +1,6 @@
 function memberTypes(name, item) {
   const mems = []
   for (const member of item.content[0].content) {
-    //mems.push(`${member.content.key.content.replace(' ', '')}`)
     mems.push(`${member.content.value.element.replace(' ', '')}`)
   }
   return mems
@@ -27,7 +26,7 @@ function jsoncode(name, item, graph) {
   for (const dep of graph.dependenciesOf(name)) {
     const code = graph.getNodeData(dep)
     if (!scala.includes(code)) {
-      //scala.push(code)
+      scala.push(code)
     }
   }
   scala.push(graph.getNodeData(name))

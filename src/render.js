@@ -137,10 +137,10 @@ function* jsonCodeGen(input, graph) {
 
 function jsonCode(input, options, graph) {
 
-  const result = ['// json support']
+  const result = ['// json support\n']
   const code = jsonCodeGen(input, graph)
   for (const [scala] of code) {
-    result.push(`\n${scala}\n`)
+    result.push(`${scala}\n`)
   }
   return result.join('')
 }

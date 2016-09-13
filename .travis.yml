@@ -1,4 +1,23 @@
 language: node_js
 node_js:
   - "6"
-
+scala:
+   - 2.10.4
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y build-essential
+  - npm install -g aglio
+  - npm install
+  - npm install -g .
+  - echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
+  - sudo apt-get update
+  - sudo apt-get install -y sbt
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+env:
+  CXX=g++-4.8

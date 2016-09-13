@@ -1,10 +1,10 @@
 {
   "name": "aglio-theme-bluecase",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Generate Scala case classes from Api-Blueprint specifications",
   "main": "src/render.js",
   "scripts": {
-    "test": "node_modules/.bin/eslint src/*.js && node_modules/.bin/mocha"
+    "test": "node_modules/.bin/eslint src/*.js && node_modules/.bin/mocha && cd examples/ex1 && sh ./build.sh && sbt test"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,9 @@
     "url": "https://github.com/navicore/aglio-theme-bluecase/issues"
   },
   "homepage": "https://github.com/navicore/aglio-theme-bluecase#readme",
-  "dependencies": {},
+  "dependencies": {
+    "dependency-graph": "^0.5.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.5.0",

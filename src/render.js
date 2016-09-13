@@ -1,7 +1,10 @@
-const classcode = require('./makecases').classcode
-const classname = require('./makecases').classname
-const impcode   = require('./makejson').impcode
-const jsoncode   = require('./makejson').jsoncode
+const classcode    = require('./makecases').classcode
+const classname    = require('./makecases').classname
+const impcode      = require('./makejson').impcode
+const arrayimpcode = require('./makejson').arrayimpcode
+const jsoncode     = require('./makejson').jsoncode
+const memberTypes  = require('./makejson').memberTypes
+const DepGraph     = require('dependency-graph').DepGraph
 
 // turn all types that are 'array' in apib into scala List[MyType]
 function fixArrayReferences(result, input, options) {
@@ -47,11 +50,32 @@ function* implicitGen(input) {
           item.element === 'dataStructure' &&
           item.content &&
           item.content.length &&
-          item.content[0].element === 'object' &&
-          item.content[0].content
-        ) {
-          const name = classname(item)
-          yield [name, impcode(name, item)]
+          item.content[0].content) {
+          if (item.content[0].element === 'object') {
+            const name = classname(item)
+            const mems = memberTypes(name, item)
+            yield [name, impcode(name, item), mems]
+          }
+        }
+      }
+    }
+  }
+}
+
+function* implicitArrayGen(input) {
+  for (const content of input.content) {
+    if (!content.content) throw new Error('bad input')
+    if (content.element === 'category') {
+      for (const item of content.content) {
+        if (
+          item.element === 'dataStructure' &&
+          item.content &&
+          item.content.length &&
+          item.content[0].content) {
+          if (item.content[0].element === 'array') {
+            const name = classname(item)
+            yield [name, arrayimpcode(name, item)]
+          }
         }
       }
     }
@@ -59,16 +83,39 @@ function* implicitGen(input) {
 }
 
 function implicits(input) {
-
-  const result = {}
+  const graph = new DepGraph()
+  const result = []
   const code = implicitGen(input)
-  for (const [name, scala] of code) {
-    result[name] = scala
+  for (const [name, scala, deps] of code) {
+    result.push({ name, scala, deps })
   }
-  return result
+  // add nodes with data being scala def
+  for (const o of result) {
+    if (!graph.hasNode(o.name)) {
+      graph.addNode(o.name, o.scala)
+    }
+  }
+  const acode = implicitArrayGen(input)
+  for (const [name, dep] of acode) {
+    if (!graph.hasNode(name)) {
+      graph.addNode(name, graph.getNodeData(dep))
+    }
+    if (!(dep in graph.dependenciesOf(name))) {
+      graph.addDependency(name, dep)
+    }
+  }
+  // add deps
+  for (const o of result) {
+    for (const d of o.deps) {
+      if (graph.hasNode(d)) {
+        graph.addDependency(o.name, d)
+      }
+    }
+  }
+  return graph
 }
 
-function* jsonCodeGen(input, impMap) {
+function* jsonCodeGen(input, graph) {
   for (const content of input.content) {
     if (!content.content) throw new Error('bad input')
     if (content.element === 'category') {
@@ -81,17 +128,17 @@ function* jsonCodeGen(input, impMap) {
           item.content[0].content
         ) {
           const name = classname(item)
-          yield [jsoncode(name, item, impMap)]
+          yield [jsoncode(name, item, graph)]
         }
       }
     }
   }
 }
 
-function jsonCode(input, options, impMap) {
+function jsonCode(input, options, graph) {
 
   const result = ['// json support']
-  const code = jsonCodeGen(input, impMap)
+  const code = jsonCodeGen(input, graph)
   for (const [scala] of code) {
     result.push(`\n${scala}\n`)
   }
@@ -188,9 +235,9 @@ exports.render = function (input, options, done) {
   }
 
   // generate implicit DefaultJsonProtocol code
-  if (options.themeScalaPackage) {
-    const impMap = implicits(input)
-    const jcode = jsonCode(input, options, impMap)
+  if (options.themeSprayJson) {
+    const graph = implicits(input)
+    const jcode = jsonCode(input, options, graph)
     result.push(`\n${jcode}\n`)
   }
 

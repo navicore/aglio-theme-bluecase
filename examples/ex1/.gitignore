@@ -1,3 +1,5 @@
+src/main/scala/onextent/bluecase/examples/ex1/
+
 *.class
 *.log
 .idea/

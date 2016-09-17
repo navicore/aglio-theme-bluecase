@@ -1,6 +1,6 @@
 {
   "name": "aglio-theme-bluecase",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Generate Scala case classes from Api-Blueprint specifications",
   "main": "src/render.js",
   "scripts": {

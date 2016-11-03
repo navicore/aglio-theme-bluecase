@@ -21,3 +21,6 @@ addons:
     - g++-4.8
 env:
   CXX=g++-4.8
+
+notifications:
+  slack: onextent:DHoK11T0iCc1huVPdfSI7567

@@ -3,6 +3,7 @@
 [![Test Coverage](https://codeclimate.com/github/navicore/aglio-theme-bluecase/badges/coverage.svg)](https://codeclimate.com/github/navicore/aglio-theme-bluecase/coverage)
 [![Issue Count](https://codeclimate.com/github/navicore/aglio-theme-bluecase/badges/issue_count.svg)](https://codeclimate.com/github/navicore/aglio-theme-bluecase)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3423ea07c830405a94656cf3035544b7)](https://www.codacy.com/app/navicore/aglio-theme-bluecase?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=navicore/aglio-theme-bluecase&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/navicore/aglio-theme-bluecase.svg?branch=master)](https://travis-ci.org/navicore/aglio-theme-bluecase)
 
 # aglio-theme-bluecase
 An [Aglio Blueprint Renderer](https://github.com/danielgtaylor/aglio) theme to generate Scala case classes from `object` `datastructure` entries found in [api-blueprint](https://apiblueprint.org) specifications.

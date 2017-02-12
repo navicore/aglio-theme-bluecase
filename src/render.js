@@ -1,16 +1,16 @@
-const classcode    = require('./makecases').classcode
-const classname    = require('./makecases').classname
-const impcode      = require('./makejson').impcode
+const classcode = require('./makecases').classcode
+const classname = require('./makecases').classname
+const impcode = require('./makejson').impcode
 const arrayimpcode = require('./makejson').arrayimpcode
-const spraycode     = require('./makejson').spraycode
-const memberTypes  = require('./makejson').memberTypes
-const DepGraph     = require('dependency-graph').DepGraph
+const spraycode = require('./makejson').spraycode
+const memberTypes = require('./makejson').memberTypes
+const DepGraph = require('dependency-graph').DepGraph
 
 // turn all types that are 'array' in apib into scala List[MyType]
-function fixArrayReferences(result, input, options) {
+function fixArrayReferences (result, input, options) {
   const arraymap = arrays(input, options)
   for (const [tname, aname] of arraymap) {
-    var re = new RegExp(tname,'g')
+    var re = new RegExp(tname, 'g')
     result = result.replace(re, aname)
   }
   return result
@@ -21,7 +21,7 @@ function fixArrayReferences(result, input, options) {
 //
 
 // create each case class
-function* classes(input, options) {
+function* classes (input, options) {
   for (const content of input.content) {
     if (!content.content) throw new Error('bad input')
     if (content.element === 'category') {
@@ -41,7 +41,7 @@ function* classes(input, options) {
   }
 }
 
-function* implicitGen(input) {
+function* implicitGen (input) {
   for (const content of input.content) {
     if (!content.content) throw new Error('bad input')
     if (content.element === 'category') {
@@ -62,7 +62,7 @@ function* implicitGen(input) {
   }
 }
 
-function* implicitArrayGen(input) {
+function* implicitArrayGen (input) {
   for (const content of input.content) {
     if (!content.content) throw new Error('bad input')
     if (content.element === 'category') {
@@ -82,7 +82,7 @@ function* implicitArrayGen(input) {
   }
 }
 
-function implicits(input) {
+function implicits (input) {
   const graph = new DepGraph()
   const result = []
   const code = implicitGen(input)
@@ -110,7 +110,7 @@ function implicits(input) {
   return graph
 }
 
-function* jsonCodeGen(input, graph) {
+function* jsonCodeGen (input, graph) {
   for (const content of input.content) {
     if (!content.content) throw new Error('bad input')
     if (content.element === 'category') {
@@ -130,8 +130,7 @@ function* jsonCodeGen(input, graph) {
   }
 }
 
-function jsonCode(input, options, graph) {
-
+function jsonCode (input, options, graph) {
   const result = ['// json support\n']
   const code = jsonCodeGen(input, graph)
   for (const [scala] of code) {
@@ -141,7 +140,7 @@ function jsonCode(input, options, graph) {
 }
 
 // old-name/new-name map for renames for all the array objects to be List[MyType]
-function* arrays(input, options) {
+function* arrays (input, options) {
   for (const content of input.content) {
     if (!content.content) throw new Error('bad input')
     if (content.element === 'category') {
@@ -165,32 +164,32 @@ exports.getConfig = function () {
   return {
     formats: ['1A'],
     options: [
-      { //lookup as themeTrimname
+      { // lookup as themeTrimname
         name: 'trimname',
         description: 'remove this string from all type names, ie: MyObjectSchema becoms MyObject',
         default: 'Schema'
       },
-      { //lookup as themeScalaPackage
+      { // lookup as themeScalaPackage
         name: 'scala-package',
         description: 'scala package',
         default: ''
       },
-      { //lookup as themeCollectionType
+      { // lookup as themeCollectionType
         name: 'collection-type',
         description: 'scala type for collectoins. ie: List, Set, Array',
         default: 'List'
       },
-      { //lookup as themeSuperClass
+      { // lookup as themeSuperClass
         name: 'super-class',
         description: 'case classes extend this abstract class',
         default: 'ApibCase'
       },
-      { //lookup as themeSprayJson
+      { // lookup as themeSprayJson
         name: 'spray-json',
         description: 'add spray.io implicit json support',
         default: ''
       },
-      { //lookup as themeDoubles
+      { // lookup as themeDoubles
         name: 'doubles',
         description: 'a comma separated list of keys that should map to double instead of int',
         default: ''
@@ -200,7 +199,6 @@ exports.getConfig = function () {
 }
 
 exports.render = function (input, options, done) {
-
   const bluecaseVersion = require('root-require')('package.json').version
   const result = [
     `/**\n`,
@@ -239,11 +237,11 @@ exports.render = function (input, options, done) {
 
   // turn refs to array in apib into List[MyType]
   let resultStr = fixArrayReferences(result.join(''), input, options)
-  
+
   // remove type suffixes from apip files
-  var re1 = new RegExp(options.themeTrimname,'g')
-  resultStr = resultStr.replace(re1, '') 
-  
+  var re1 = new RegExp(options.themeTrimname, 'g')
+  resultStr = resultStr.replace(re1, '')
+
   done(null, resultStr)
 }
 

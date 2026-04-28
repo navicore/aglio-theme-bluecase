@@ -1,3 +1,8 @@
+<!-- ghmig:moved -->
+> **This repository has moved to [https://git.navicore.tech/navicore/aglio-theme-bluecase](https://git.navicore.tech/navicore/aglio-theme-bluecase).**
+>
+> The GitHub copy is archived and no longer maintained.
+
 [![Build Status](https://travis-ci.org/navicore/aglio-theme-bluecase.svg?branch=unittests)](https://travis-ci.org/navicore/aglio-theme-bluecase)
 [![Code Climate](https://codeclimate.com/github/navicore/aglio-theme-bluecase/badges/gpa.svg)](https://codeclimate.com/github/navicore/aglio-theme-bluecase)
 [![Test Coverage](https://codeclimate.com/github/navicore/aglio-theme-bluecase/badges/coverage.svg)](https://codeclimate.com/github/navicore/aglio-theme-bluecase/coverage)
@@ -33,4 +38,3 @@ License
 Copyright (c) 2016 Ed Sweeney
 
 http://dgt.mit-license.org/
-
